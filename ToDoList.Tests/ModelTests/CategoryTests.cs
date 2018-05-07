@@ -99,27 +99,27 @@ namespace ToDoList.Tests
     //
     //   CollectionAssert.AreEqual(testItemList, resultItemList);
     // }
-    [TestMethod]
-    public void Delete_DeletesCategoryAssociationsFromDatabase_CategoryList()
-    {
-      //Arrange
-      Item testItem = new Item("Mow the lawn");
-      testItem.Save();
-
-      string testName = "Home stuff";
-      Category testCategory = new Category(testName);
-      testCategory.Save();
-
-      //Act
-      testCategory.AddItem(testItem);
-      testCategory.Delete();
-
-      List<Category> resultItemCategories = testItem.GetCategories();
-      List<Category> testItemCategories = new List<Category> {};
-
-      //Assert
-      CollectionAssert.AreEqual(testItemCategories, resultItemCategories);
-    }
+    // [TestMethod]
+    // public void Delete_DeletesCategoryAssociationsFromDatabase_CategoryList()
+    // {
+    //   //Arrange
+    //   Item testItem = new Item("Mow the lawn");
+    //   testItem.Save();
+    //
+    //   string testName = "Home stuff";
+    //   Category testCategory = new Category(testName);
+    //   testCategory.Save();
+    //
+    //   //Act
+    //   testCategory.AddItem(testItem);
+    //   testCategory.Delete();
+    //
+    //   List<Category> resultItemCategories = testItem.GetCategories();
+    //   List<Category> testItemCategories = new List<Category> {};
+    //
+    //   //Assert
+    //   CollectionAssert.AreEqual(testItemCategories, resultItemCategories);
+    // }
     [TestMethod]
     public void Test_AddItem_AddsItemToCategory()
     {
