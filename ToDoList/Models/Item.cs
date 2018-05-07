@@ -162,22 +162,21 @@ namespace ToDoList.Models
 
         public void Delete()
         {
-            MySqlConnection conn = DB.Connection();
-            conn.Open();
-            var cmd = conn.CreateCommand() as MySqlCommand;
-            cmd.CommandText = @"DELETE FROM items WHERE id = @searchId;";
+          MySqlConnection conn = DB.Connection();
+          conn.Open();
+          var cmd = conn.CreateCommand() as MySqlCommand;
+          cmd.CommandText = @"DELETE FROM items WHERE id = @ItemId; DELETE FROM categories_items WHERE item_id = @ItemId;";
 
-            MySqlParameter searchId = new MySqlParameter();
-            searchId.ParameterName = "@searchId";
-            searchId.Value = _id;
-            cmd.Parameters.Add(searchId);
+          MySqlParameter itemIdParameter = new MySqlParameter();
+          itemIdParameter.ParameterName = "@ItemId";
+          itemIdParameter.Value = this.GetId();
+          cmd.Parameters.Add(itemIdParameter);
 
-            cmd.ExecuteNonQuery();
+          cmd.ExecuteNonQuery();
+          if (conn != null)
+          {
             conn.Close();
-            if (conn != null)
-            {
-                conn.Dispose();
-            }
+          }
         }
 
         public static void DeleteAll()
